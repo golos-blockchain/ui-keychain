@@ -1,0 +1,11 @@
+.Popup {
+    width: 350px;
+
+    & .logo {
+        margin-left: 0.5rem;
+        font-size: 200%;
+        color: #2572ba;
+    }
+
+    font-size: 90%;
+}
