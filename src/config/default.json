@@ -1,0 +1,11 @@
+{
+  "nodes": [
+    { "address": "wss://apibeta.golos.today/ws" },
+    { "address": "wss://api.golos.id/ws" },
+    { "address": "wss://api.aleksw.space/ws" },
+    { "address": "wss://api-golos.blckchnd.com/ws" }
+  ],
+  "app_updater": {
+    "host": "https://files.golos.app"
+  }
+}

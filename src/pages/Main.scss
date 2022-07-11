@@ -1,0 +1,14 @@
+.Main__loading {
+  margin: 1rem;
+}
+
+.Main__balance {
+  padding-bottom: 1rem;
+  padding-top: 1rem;
+
+  &.zebra {
+      @include themify($themes) {
+        background: themed('zebra')
+      }
+  }
+}

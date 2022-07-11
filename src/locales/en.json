@@ -1,0 +1,86 @@
+{
+  "APPNAME": "Golos Keychain",
+  "create_secret_jsx": {
+    "APPNAME_will_store_your_keys": "%(APPNAME)s extension will safely store your keys and password. They will be enciphered.",
+    "please_create_secret": "For that, you should come up with a secret phrase for the cipher. Secret phrase will not be stored anywhere.",
+    "your_secret": "Your secret phrase:",
+    "reeenter_secret": "Enter phrase again:",
+    "poor_secret": "Your secret phrase should have at least 8 symbols, including 1-9 digits and Big Letters.",
+    "too_long_secret": "Your secret phrase is longer than 512 symbols.",
+    "non_latin": "Secret phrase should consist only of english letters.",
+    "secrets_are_not_same": "Secret phrases are not the same."
+  },
+  "add_keys_jsx": {
+    "enter_your_name": "Enter your name...",
+    "and_your_password": "...and password or one of keys to save:",
+    "it_is_a_password": "It is your password. We will save posting, active and owner keys.",
+    "it_is_a_KEY": "It is %(KEY)s-key.",
+    "enter_more_keys": "Save another keys too",
+    "posting": "Posting",
+    "active": "Active",
+    "owner": "Owner",
+    "memo": "You entered memo-key, we are not currently support memo keys.",
+    "wrong": "Wrong.",
+    "no_account": "Not found account...",
+    "account_frozen": "Your account is temporarily frozen."
+  },
+  "enter_secret_jsx": {
+    "enter_secret": "Enter secret phrase:",
+    "wrong": "Wrong.",
+    "forgot": "I forgot it",
+    "forgot_confirm": "Are you sure you are forgot your secret phrase? We can remove all keys from Keychain, you should enter them all again."
+  },
+  "main_jsx": {
+    "transfer": "Transfer",
+    "donate": "Donate",
+    "tip": "TIP balance",
+    "vs": "Golos Power",
+    "golos": "Golos",
+    "gold": "Gold",
+    "saving": "Saving",
+    "lock": "Shred keys",
+    "lock_desc": "Will shred keys and you should enter it again.",
+    "lock_confirm": "Click again"
+  },
+  "transfer_jsx": {
+    "to": "To",
+    "amount": "Amount",
+    "memo": "Memo",
+    "balance": "Balance",
+    "insufficient_funds": "Insufficient funds",
+    "no_active": "We are not storing your active-key. Please shred all keys and login again.",
+    "no_posting": "We are not storing your posting-key. Please shred all keys and login again."
+  },
+  "login_jsx": {
+    "error": "Your keychain is empty. Please fill it before using it to authorize in applications.",
+    "wants_your_nick": " wants to know what is your name on Golos.",
+    "and_no_more": "(and not yet wants anything else)"
+  },
+  "sign_jsx": {
+    "wants_send_tx": "wants to make following actions:",
+    "missing_roles": "It requires also keys which are not stored in keychain:",
+    "wrong_key": "Wrong key."
+  },
+  "app_settings": {
+    "to_save_click_button": "Click Save button in order to apply settings.",
+    "current_node": "GOLOS node:",
+    "save": "Save"
+  },
+  "app_update": {
+    "notify": "Here is a new version",
+    "download": "Download"
+  },
+  "g": {
+    "back": "Back",
+    "continue": "Continue",
+    "more_hint": "Details",
+    "required": "Required",
+    "settings": "Settings",
+    "sign_in": "Sign in",
+    "sign_out": "Sign out",
+    "yes": "Yes",
+    "no": "No",
+    "allow": "Allow",
+    "forbid": "Forbid"
+  }
+}

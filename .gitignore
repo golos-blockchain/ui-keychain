@@ -1,0 +1,5 @@
+build
+build-firefox
+build-chrome
+dist
+node_modules
