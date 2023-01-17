@@ -15,5 +15,6 @@ export async function loadSettings() {
     if (!merged.current_node) {
         merged.current_node = merged.nodes[0].address
     }
+    merged.app_updater = defaultCfg.app_updater
     return merged
 }

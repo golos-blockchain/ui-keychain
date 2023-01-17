@@ -10,16 +10,16 @@ class DownloadUpdate extends React.Component {
     async componentDidMount() {
         const { settings } = this.props
 
-        const text = await getChangelog(settings, { txt: this.getTxt() })
+        const text = await getChangelog(settings, this.getTxtLink())
         this.setState({
             text,
             loading: false
         })
     }
 
-    getTxt = () => {
-        const { txt } = this.props.router.matches
-        return txt
+    getTxtLink = () => {
+        const { txt_link } = this.props.router.matches
+        return txt_link
     }
 
     download = () => {
