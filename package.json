@@ -12,8 +12,7 @@
     "preact-render-to-string": "^5.2.0",
     "preact-router": "^4.0.1",
     "react-foundation-components": "git+https://github.com/golos-blockchain/react-foundation-components.git#6606fd5529f1ccbc77cd8d33a8ce139fdf8f9a11",
-    "sass": "^1.53.0",
-    "semver": "^7.3.7"
+    "sass": "^1.53.0"
   },
   "scripts": {
     "dev": "preact watch",

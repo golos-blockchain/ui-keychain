@@ -8,7 +8,7 @@ class UpdateCallout extends React.Component {
         const { updateState } = this.props
         const opts = {
             url: '/popup.html#/update/' +
-                updateState.txt + '/' + encodeURIComponent(updateState.exeLink),
+                encodeURIComponent(updateState.txtLink) + '/' + encodeURIComponent(updateState.exeLink),
             width: 350,
             height: 400,
             type: 'popup',

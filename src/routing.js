@@ -5,6 +5,6 @@ export default {
     settings: '/settings',
     login: '/login/:host',
     sign: '/sign/:tx_id',
-    update: '/update/:txt/:exe_link',
+    update: '/update/:txt_link/:exe_link',
     create_secret: '/',
 }
