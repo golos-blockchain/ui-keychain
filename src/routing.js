@@ -1,7 +1,7 @@
 export default {
     main: '/main',
     add_keys: '/add_keys/',
-    enter_secret: '/enter_secret/:host?/',
+    enter_secret: '/enter_secret/:host?/:dialog?',
     settings: '/settings',
     login: '/login/:host',
     sign: '/sign/:tx_id',

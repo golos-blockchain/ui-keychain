@@ -9,6 +9,7 @@ import HostLink from '../elements/HostLink'
 import AnotherKeys from '../modules/AnotherKeys'
 import LoadingIndicator from '../elements/LoadingIndicator'
 import { decrypt } from '../utils/ciphering'
+import { hasClient, setConfirmTx } from '../utils/clients'
 import { getSession, } from '../utils/front/sessionFront'
 import { loadStoredItems } from '../utils/storage'
 import { loadPendingTx, forbidTx, setSignedTx } from '../utils/front/pendingTxFront'
@@ -53,7 +54,8 @@ class Sign extends React.Component {
     }
 
     async componentDidMount() {
-        const store = (await loadStoredItems()).store
+        const items = await loadStoredItems()
+        const store = items.store
         const session = await getSession()
         if (store && !session) {
             route('/enter_secret')
@@ -68,6 +70,9 @@ class Sign extends React.Component {
             alert('Pending tx loading error: ' + errorString(err))
             return
         }
+
+        const { host } = pendingTx
+        const client = await hasClient(host)
 
         let roles
         let missingRoles = new Set()
@@ -88,7 +93,8 @@ class Sign extends React.Component {
             decrypted,
             pendingTx,
             roles,
-            missingRoles
+            missingRoles,
+            client
         })
     }
 
@@ -112,6 +118,7 @@ class Sign extends React.Component {
             const { decrypted } = this.state
             let invalid
             for (let role in values) {
+                if (role === 'no_confirm_anymore') continue
                 if (!values[role]) continue
                 const res = await auth.login(decrypted.name, values[role])
                 if (!res[role]) {
@@ -121,6 +128,14 @@ class Sign extends React.Component {
             }
             if (!invalid) {
                 const { roles, pendingTx } = this.state
+                if (values.no_confirm_anymore) {
+                    try {
+                        const { host } = pendingTx
+                        await setConfirmTx(host, false)
+                    } catch (err) {
+                        alert(err.toString())
+                    }
+                }
                 const keys = new Set()
                 for (let role of roles) {
                     keys.add(decrypted[role] || values[role])
@@ -137,7 +152,7 @@ class Sign extends React.Component {
     }
 
     render() {
-        const { loading, store, pendingTx, missingRoles } = this.state
+        const { loading, store, pendingTx, missingRoles, client } = this.state
         if (loading) { return null }
         if (!store) {
             return <div className='Login'>
@@ -166,12 +181,13 @@ class Sign extends React.Component {
                     posting: '',
                     active: '',
                     owner: '',
+                    no_confirm_anymore: !!client.notConfirmTx,
                 }}
                 validate={this.validate}
                 onSubmit={this.onSubmit}
             >
             {({
-                isValid, isSubmitting
+                values, isValid, isSubmitting
             }) => {
                 const disabled = !isValid
                 return <Form>
@@ -180,11 +196,22 @@ class Sign extends React.Component {
                         <p>{tt('sign_jsx.missing_roles')}</p>
                         <AnotherKeys keys={[...missingRoles]} />
                     </div> : null}
+                <div className='input-group' style={{marginBottom: '1rem'}}>
+                    <label>
+                        <Field
+                            className='input-group-field bold'
+                            name='no_confirm_anymore'
+                            type='checkbox'
+                        />
+                        {tt('sign_jsx.no_confirm_anymore')}
+                        <HostLink host={host} />
+                    </label>
+                </div>
                 {isSubmitting ? <LoadingIndicator type='circle' /> : <p>
                     <button className='button' type='submit' disabled={disabled}>
                         {tt('g.allow')}
                     </button>
-                    <button className='button hollow' onClick={this.forbid}>
+                    <button className='button hollow' disabled={values.no_confirm_anymore} onClick={this.forbid}>
                         {tt('g.forbid')}
                     </button>
                 </p>}

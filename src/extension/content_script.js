@@ -1,4 +1,4 @@
-var browser = require('webextension-polyfill')
+var browser = require('../utils/polyfill')()
 console.log('CS Start')
 
 const inject = () => {

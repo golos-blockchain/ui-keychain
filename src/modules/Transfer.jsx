@@ -6,7 +6,6 @@ import { broadcast } from 'golos-lib-js'
 
 import AmountField from '../elements/forms/AmountField'
 import AssetBalance from '../elements/forms/AssetBalance'
-import { loadStoredItems } from '../utils/storage'
 
 class Transfer extends React.Component {
     back = () => {

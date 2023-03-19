@@ -59,7 +59,8 @@
   "sign_jsx": {
     "wants_send_tx": "wants to make following actions:",
     "missing_roles": "It requires also keys which are not stored in keychain:",
-    "wrong_key": "Wrong key."
+    "wrong_key": "Wrong key.",
+    "no_confirm_anymore": "Do not confirm anymore for "
   },
   "app_settings": {
     "to_save_click_button": "Click Save button in order to apply settings.",
