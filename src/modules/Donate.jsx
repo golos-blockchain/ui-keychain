@@ -8,6 +8,10 @@ import AmountField from '../elements/forms/AmountField'
 import AssetBalance from '../elements/forms/AssetBalance'
 
 class Donate extends React.Component {
+    state = {
+        success: false
+    }
+
     back = () => {
         this.props.back()
     }
@@ -32,6 +36,7 @@ class Donate extends React.Component {
     }
 
     onSubmit = async (values, { setSubmitting, setFieldError }) => {
+        this.setState({ success: false })
         const from = this.props.account.name
         const { to, memo } = values
         const amount = values.amount.asset
@@ -46,6 +51,9 @@ class Donate extends React.Component {
                     permlink: ''
                 }
             }, [])
+            this.setState({
+                success: true
+            })
         } catch (err) {
             setFieldError('memo', err.message || err)
             setSubmitting(false)
@@ -66,6 +74,7 @@ class Donate extends React.Component {
             </div>
         }
 
+        const { success } = this.state
         return <div className='Donate'>
             <Formik initialValues={{
                     to: '',
@@ -110,6 +119,9 @@ class Donate extends React.Component {
                         </div>
                     </div>
                     <ErrorMessage name='memo' component='div' className='error' />
+                    {success ? <div className='row' style={{marginBottom: '1rem'}} className='success'>
+                        {tt('transfer_jsx.success')}
+                    </div> : null}
                     <div className='row'>
                         <button className='button hollow' onClick={this.back}>
                             {tt('g.back')}

@@ -45,13 +45,14 @@ class Popup extends React.Component {
             && !hash.startsWith('/sign/')
             && !hash.startsWith('/update/')
             && !hash.startsWith('/enter_secret/')) {
-            this.goStep(settings)
+            this.goStep()
         } else {
             this.setState({ loading: false, settings })
         }
     }
 
-    goStep = async (settings) => {
+    goStep = async () => {
+        const settings = await loadSettings()
         const updateState = await checkUpdates(settings)
         const session = await getSession()
         const store = (await loadStoredItems()).store

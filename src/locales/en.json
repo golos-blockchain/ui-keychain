@@ -49,7 +49,8 @@
     "balance": "Balance",
     "insufficient_funds": "Insufficient funds",
     "no_active": "We are not storing your active-key. Please shred all keys and login again.",
-    "no_posting": "We are not storing your posting-key. Please shred all keys and login again."
+    "no_posting": "We are not storing your posting-key. Please shred all keys and login again.",
+    "success": "Success"
   },
   "login_jsx": {
     "error": "Your keychain is empty. Please fill it before using it to authorize in applications.",
