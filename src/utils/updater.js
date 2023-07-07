@@ -1,4 +1,5 @@
-var browser = require('webextension-polyfill')
+var browser = require('./polyfill')()
+
 import tt from 'counterpart'
 import { fetchEx } from 'golos-lib-js/lib/utils'
 

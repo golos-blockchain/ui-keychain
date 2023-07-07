@@ -6,7 +6,6 @@ import { broadcast } from 'golos-lib-js'
 
 import AmountField from '../elements/forms/AmountField'
 import AssetBalance from '../elements/forms/AssetBalance'
-import { loadStoredItems } from '../utils/storage'
 
 class Transfer extends React.Component {
     back = () => {
@@ -37,12 +36,16 @@ class Transfer extends React.Component {
     }
 
     onSubmit = async (values, { setSubmitting, setFieldError }) => {
+        this.setState({ success: false })
         const from = this.props.account.name
         const { to, memo } = values
         const amount = values.amount.asset
         const { keys } = this.props
         try {
             await broadcast.transferAsync(keys.active, from, to, amount, memo)
+            this.setState({
+                success: true
+            })
         } catch (err) {
             setFieldError('memo', err.message || err)
             setSubmitting(false)
@@ -63,6 +66,7 @@ class Transfer extends React.Component {
             </div>
         }
 
+        const { success } = this.state
         return <div className='Transfer'>
             <Formik initialValues={{
                     to: '',
@@ -107,6 +111,9 @@ class Transfer extends React.Component {
                         </div>
                     </div>
                     <ErrorMessage name='memo' component='div' className='error' />
+                    {success ? <div className='row' style={{marginBottom: '1rem'}} className='success'>
+                        {tt('transfer_jsx.success')}
+                    </div> : null}
                     <div className='row'>
                         <button className='button hollow' onClick={this.back}>
                             {tt('g.back')}

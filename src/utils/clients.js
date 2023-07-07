@@ -36,3 +36,12 @@ export async function hasClient(host) {
 export async function clearClients() {
     return await removeItems('clients')
 }
+
+export async function setConfirmTx(host, confirmTx) {
+    let clients = await singletoneGetClients()
+    clients[host].notConfirmTx = !confirmTx
+
+    await storeItems({
+        clients
+    })
+}

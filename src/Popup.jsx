@@ -41,14 +41,18 @@ class Popup extends React.Component {
         await initGolos(settings)
         let { hash } = window.location
         hash = hash.substring(1)
-        if (!hash.startsWith('/login/') && !hash.startsWith('/sign/') && !hash.startsWith('/update/')) {
-            this.goStep(settings)
+        if (!hash.startsWith('/login/')
+            && !hash.startsWith('/sign/')
+            && !hash.startsWith('/update/')
+            && !hash.startsWith('/enter_secret/')) {
+            this.goStep()
         } else {
             this.setState({ loading: false, settings })
         }
     }
 
-    goStep = async (settings) => {
+    goStep = async () => {
+        const settings = await loadSettings()
         const updateState = await checkUpdates(settings)
         const session = await getSession()
         const store = (await loadStoredItems()).store

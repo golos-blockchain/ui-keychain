@@ -1,4 +1,4 @@
-var browser = require('webextension-polyfill')
+var browser = require('../polyfill')()
 
 export async function sendMessage(msg, data) {
     return await browser.runtime.sendMessage({

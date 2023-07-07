@@ -1,4 +1,5 @@
-var browser = require('webextension-polyfill')
+var browser = require('./utils/polyfill')()
+
 import React from 'react'
 
 import Popup from './Popup'

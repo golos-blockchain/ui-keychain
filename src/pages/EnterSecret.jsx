@@ -7,6 +7,8 @@ import { createSession, } from '../utils/front/sessionFront'
 import { loadStoredItems, removeItems } from '../utils/storage'
 import { decrypt } from '../utils/ciphering'
 import { clearClients } from '../utils/clients'
+import { withRouter } from '../utils/router'
+import { setDialogResult } from '../utils/front/dialogFront'
 
 class EnterSecret extends React.Component {
     state = {}
@@ -35,7 +37,15 @@ class EnterSecret extends React.Component {
             return
         }
         await createSession(values.phrase)
-        this.props.goStep()
+        const { dialog } = this.props.router.matches
+        if (dialog) {
+            setDialogResult(null, values.phrase)
+            setTimeout(() => {
+                window.close()
+            }, 100)
+        } else {
+            this.props.goStep()
+        }
     }
 
     goForgot = (e) => {
@@ -110,4 +120,4 @@ class EnterSecret extends React.Component {
     }
 }
 
-export default EnterSecret
+export default withRouter(EnterSecret)
